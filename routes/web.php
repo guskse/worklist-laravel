@@ -1,16 +1,15 @@
 <?php
 
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JobController;
 
 
-Route::get('/jobs', function () {
-    return 'available jobs';
-});
+//HOME PAGE
+Route::get('/', [HomeController::class, 'index']);
 
 
-
-?>
+//JOBS ROUTES
+Route::resource('jobs', JobController::class);
