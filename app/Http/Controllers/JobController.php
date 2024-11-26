@@ -49,7 +49,7 @@ class JobController extends Controller
      */
     public function show(string $id)
     {
-        return 'Showing job with id: ' . $id;
+        return view('jobs.show', ['id' => $id]);
     }
 
 
@@ -78,5 +78,4 @@ class JobController extends Controller
     {
         //
     }
-
 }
