@@ -13,7 +13,7 @@
     {{-- navbar --}}
     <x-header />
 
-    {{-- only show this component if in the home page --}}
+    {{-- only show this layout component if in the home page --}}
     @if(request()->is('/'))
     <x-hero />
     <x-top-banner />
