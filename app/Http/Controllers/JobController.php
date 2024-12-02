@@ -13,9 +13,9 @@ use App\Models\Job;
 
 class JobController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    // @desc show all job listings
+    // @route GET /jobs
     public function index(): View
     {
         $jobs = Job::all();
@@ -23,18 +23,16 @@ class JobController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // @desc show create form view
+    // @route GET /jobs/create
     public function create(Request $request): View
     {
         return view('jobs.create');
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // @desc save job to database
+    // @route POST /jobs
     public function store(Request $request): RedirectResponse
     {
         //job form validation
@@ -80,27 +78,24 @@ class JobController extends Controller
     }
 
 
-    /**
-     * Display the specified resource.
-     */
+    // @desc display a single job listing
+    // @route GET /jobs/{id}
     public function show(Job $job): View
     {
         return view('jobs.show')->with('job', $job);
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // @desc edit page form for a single job listing
+    // @route GET /jobs/{id}/edit
     public function edit(Job $job): View
     {
         return view('jobs.edit')->with('job', $job);
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // @desc update a job listing
+    // @route PUT /jobs/{id}
     public function update(Request $request, Job $job)
     {
         //job form validation
@@ -146,9 +141,8 @@ class JobController extends Controller
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // @desc delete job listing
+    // @route DELETE /job/{id}
     public function destroy(Job $job): RedirectResponse
     {
         //If job has logo, then delete

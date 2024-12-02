@@ -8,30 +8,40 @@
         <nav class="hidden md:flex items-center space-x-4">
             <x-nav-link url="/" :active="request()->is('/')">Home</x-nav-link>
             <x-nav-link url="/jobs" :active="request()->is('jobs')">All Jobs</x-nav-link>
+
+            @auth
             <x-nav-link url="/jobs/saved" :active="request()->is('jobs/saved')">Jobs Saved</x-nav-link>
-            <x-nav-link url="/login" :active="request()->is('login')">Login</x-nav-link>
-            <x-nav-link url="/register" :active="request()->is('register')">Register</x-nav-link>
             <x-nav-link url="/dashboard" :active="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link>
             <x-button-link url="/jobs/create" icon="edit">Create Job</x-button-link>
+            <x-logout-button />
+
+            @else
+            <x-nav-link url="/login" :active="request()->is('login')">Login</x-nav-link>
+            <x-nav-link url="/register" :active="request()->is('register')">Register</x-nav-link>
+            @endauth
         </nav>
 
         <button @click="open = !open" id="hamburger" class="text-white md:hidden flex items-center">
             <i class="fa fa-bars text-2xl"></i>
         </button>
-        
+
     </div>
 
     <!-- Mobile Menu -->
     <nav x-show="open" @click.away="open = false" id="mobile-menu" class="md:hidden bg-blue-900 text-white mt-5 pb-4 space-y-2">
         <x-nav-link :mobile="true" url="/" :active="request()->is('/')">Home</x-nav-link>
         <x-nav-link :mobile="true" url="/jobs" :active="request()->is('jobs')">All Jobs</x-nav-link>
+
+        @auth
         <x-nav-link :mobile="true" url="/jobs/saved" :active="request()->is('jobs/saved')">Jobs Saved</x-nav-link>
+        <x-nav-link :mobile="true" url="/dashboard" :active="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link>
+        <x-button-link url="jobs/create" icon="edit" :block="true">Create Job</x-button-link>
+        <x-logout-button />
+
+        @else
         <x-nav-link :mobile="true" url="/login" :active="request()->is('login')">Login</x-nav-link>
         <x-nav-link :mobile="true" url="/register" :active="request()->is('register')">Register</x-nav-link>
-        <x-nav-link :mobile="true" url="/dashboard" :active="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link>
-
-        <x-button-link url="jobs/create" icon="edit" :block="true">Create Job</x-button-link>
-
+        @endauth
     </nav>
 
 </header>
