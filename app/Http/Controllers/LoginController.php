@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
 
     // @desc show login form
-    // @route GET /login
+    // @route GET /login'
     public function login(): View
     {
         return view('auth.login');

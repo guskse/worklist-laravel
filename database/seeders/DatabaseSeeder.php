@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->truncate();
 
         //call the seeders
+        $this->call(TestUserSeeder::class);
         $this->call(RandomUserSeeder::class);
         $this->call(JobSeeder::class);
     }
