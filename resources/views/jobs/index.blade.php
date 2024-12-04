@@ -9,5 +9,7 @@
         @endforelse
     </div>
 
+    {{-- pagination navigation links --}}
+    {{$jobs->links()}}
 
 </x-layout>

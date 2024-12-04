@@ -20,7 +20,7 @@ class JobController extends Controller
     // @route GET /jobs
     public function index(): View
     {
-        $jobs = Job::all();
+        $jobs = Job::paginate(3);
         return view('jobs.index')->with('jobs', $jobs);
     }
 
@@ -167,6 +167,11 @@ class JobController extends Controller
 
         //delete the job
         $job->delete();
+
+        //check if request came from the dahsboard 
+        if (request()->query('from') == 'dashboard') {
+            return redirect()->route('dashboard')->with('success', 'Job listing deleted!');
+        }
 
         return redirect()->route('jobs.index')->with('success', 'Job listing deleted!');
     }
