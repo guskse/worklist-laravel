@@ -10,7 +10,7 @@
             <x-nav-link url="/jobs" :active="request()->is('jobs')">All Jobs</x-nav-link>
 
             @auth
-            <x-nav-link url="/jobs/saved" :active="request()->is('jobs/saved')">Jobs Saved</x-nav-link>
+            <x-nav-link url="/bookmarks" :active="request()->is('bookmarks')">Bookmarks</x-nav-link>
 
             {{-- PROFILE IMAGE --}}
             <div class="flex-items-center space-x-3">
@@ -44,7 +44,7 @@
         <x-nav-link :mobile="true" url="/jobs" :active="request()->is('jobs')">All Jobs</x-nav-link>
 
         @auth
-        <x-nav-link :mobile="true" url="/jobs/saved" :active="request()->is('jobs/saved')">Jobs Saved</x-nav-link>
+        <x-nav-link :mobile="true" url="/bookmarks" :active="request()->is('bookmarks')">Bookmarks</x-nav-link>
         <x-nav-link :mobile="true" url="/dashboard" :active="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link>
         <x-button-link url="jobs/create" icon="edit" :block="true">Create Job</x-button-link>
         <x-logout-button />

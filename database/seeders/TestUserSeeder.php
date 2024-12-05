@@ -14,13 +14,15 @@ class TestUserSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        User::create([
+        $user = User::create([
             'name' => 'Test user',
             'email' => 'test@email.com',
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make('123456789')
         ]);
+
+        return $user;
     }
 }

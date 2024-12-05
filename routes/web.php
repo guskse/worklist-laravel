@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\DashboardController;
@@ -10,13 +11,15 @@ use App\Http\Controllers\RegisterController;
 
 use App\Http\Controllers\ProfileController;
 
+use App\Http\Controllers\BookmarkController;
+
 
 
 //HOME PAGE
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //JOBS ROUTES
-// Route::resource('jobs', JobController::class); //without the middleware
+// Route::resource('jobs', JobController::class); //without middleware
 Route::resource('jobs', JobController::class)->middleware('auth')->only(['create', 'edit', 'update', 'destroy']);
 Route::resource('jobs', JobController::class)->except(['create', 'edit', 'update', 'destroy']);
 
@@ -37,9 +40,16 @@ Route::middleware('guest')->group(function () {
 //LOGOUT ROUTE
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-
-//DASHBOARD
+//DASHBOARD ROUTE
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-//PROFILE
+//PROFILE ROUTES
 Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+
+//BOOKMARK ROUTES
+Route::middleware('auth')->group(function () {
+    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
+    Route::post('/bookmarks/{job}', [BookmarkController::class, 'store'])->name('bookmarks.store');
+    Route::delete('bookmarks/{job}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
+});
