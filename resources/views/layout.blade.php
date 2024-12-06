@@ -10,6 +10,10 @@
     <title>{{$title ?? 'Workopia | Find and List jobs'}}</title>
 </head>
 <body class="bg-gray-100">
+    {{-- display alert  flash messages --}}
+    @if(session('success'))
+    <x-alert type="success" message="{{session('success')}}" />
+    @endif
     {{-- navbar --}}
     <x-header />
 
@@ -20,11 +24,6 @@
     @endif
 
     <main class="container mx-auto p-4 mt-4">
-
-        {{-- display alert  flash messages --}}
-        @if(session('success'))
-        <x-alert type="success" message="{{session('success')}}" />
-        @endif
 
         @if(session('error'))
         <x-alert type="error" message="{{session('error')}}" />

@@ -44,7 +44,7 @@
             </h3>
 
             @forelse($jobs as $job)
-            <div class="flex justify-between items-center border-b-2 border-gray-200 py-2">
+            <div class="flex justify-between items-center border-b-2 border-gray-200 py-4">
                 <div>
                     <h3 class="text-xl font-semibold">{{$job->title}}</h3>
                     <p class="text-gray-700">{{$job->job_type}}</p>
@@ -59,9 +59,49 @@
                         @method('DELETE')
                         <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded text-sm">Delete</button>
                     </form>
-
                 </div>
             </div>
+
+            {{-- APPLICANTS --}}
+            <div class="my-2 bg-gray-200">
+                <h4 class="text-lg font-semibold mb-2">Applicants</h4>
+                @forelse($job->applicants as $applicant)
+                <div class="py-2">
+                    <p class="text-gray-800">
+                        <strong>Name:</strong> {{$applicant->full_name}}
+                    </p>
+
+                    <p class="text-gray-800">
+                        <strong>Phone:</strong> {{$applicant->contact_phone}}
+                    </p>
+
+                    <p class="text-gray-800">
+                        <strong>Email:</strong> {{$applicant->contact_email}}
+                    </p>
+
+                    <p class="text-gray-800">
+                        <strong>Message:</strong> {{$applicant->message}}
+                    </p>
+
+                    <p class="text-gray-800 my-2">
+                        <a href="{{asset('storage/' . $applicant->resume_path)}}" download class="text-blue-500 hover:underline text-sm"><i class="fas fa-download"></i>Download Resume</a>
+                    </p>
+
+                    {{-- DELETE APPLICANT BUTTON --}}
+                    <form method="POST" onsubmit="return confirm('Are you sure you want to delete this applicant?')" action={{route('applicant.destroy', $applicant->id)}}>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-500 hover:text-red-700 text-sm"><i class="fas fa-trash"></i>Delete applicant</button>
+                    </form>
+                    <hr>
+
+
+                </div>
+                @empty
+                <p class="text-gray-700">No applicants for this job.</p>
+                @endforelse
+            </div>
+
             @empty
             <p class="text-gray-700">You have no job listing yet.</p>
             @endforelse
