@@ -123,10 +123,6 @@
                 <p class="my-5 bg-gray-200 rounded p-3"> <i class="fas fa-info-circle mr-3"></i>Must be logged in to apply for job.</p>
                 @endauth
             </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-                <div id="map"></div>
-            </div>
         </section>
 
         {{-- SIDEBAR --}}

@@ -15,10 +15,14 @@ use App\Http\Controllers\BookmarkController;
 
 use App\Http\Controllers\ApplicantController;
 
-
-
 //HOME PAGE
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+//SEARCH JOB ROUTE
+Route::get('/jobs/search', [JobController::class, 'search'])->name('jobs.search');
+
+
 
 //JOBS ROUTES
 // Route::resource('jobs', JobController::class); //without middleware
